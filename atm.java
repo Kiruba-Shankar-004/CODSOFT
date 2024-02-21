@@ -1,72 +1,75 @@
-import java.util.Scanner.*;
-interface I
-    {
-        public void withdraw();
-        public void deposit();
-    }
-        
-class ATM implements I
-    {
-        public double amount = 20000.0;
-        public void withdraw(double amount)
-        {
-          if(this.amount<amount)
-          {
-            System.out.println("Insufficient Balance!");
-          }
-          else
-          {
-            this.amount-=amount;
-            balance();
-          }
-        }
-        public void deposit(double amount)
-        {
-            this.amount+=amount;
-            balance();
-        }
-        public void balance()
-        {
-            System.out.println("Balance Amount is: "+amount+" INR");
-        }
-    }
-public class ATMSystem
-{
-    public static void main(String args[])
-    {
-        System.out.println("Welcome to ATM System\n");
-        System.out.println("You can choose any one of the operation");
-        ATM obj = new ATM();
-        Scanner s = new Scanner(System.in);
-        System.out.println("\n1.Withdraw\t2.Deposit\t3.Balance Enquiry\t4.Terminate Transaction");
-        System.out.println("Enter your choice:");
-        int choice;
-        do
-            {
-                System.out.println("Enter your choice:");
-                choice = s.nextInt();
-                switch(choice)
-                    {
-                        case 1:
-                            System.out.println("Enter the amount to withdraw:");
-                            double Withdrawamount = s.nextDouble();
-                            obj.withdraw(withdrawamount);
-                            break;
-                        case 2:
-                            System.out.println("Enter the amount to Deposit:");
-                            double Depositamount = s.nextDouble();
-                            obj.deposit(Depositamount);
-                            break;
-                        case 3:
-                            System.out.println("Processing Details");
-                            obj.balance();
-                            break;
-                        case 4:
-                            System.out.println("Terminating Transaction");
-                            System.out.println("Transaction Successful");
-                            System.exit(0);
-                    }
-            }
-            while(choice<=4);
-    }
+//import required classes and packages   
+import java.util.Scanner;  
+  
+//create ATMExample class to implement the ATM functionality  
+public class ATMExample  
+{  
+    //main method starts   
+    public static void main(String args[] )  
+    {  
+        //declare and initialize balance, withdraw, and deposit  
+        int balance = 100000, withdraw, deposit;  
+          
+        //create scanner class object to get choice of user  
+        Scanner sc = new Scanner(System.in);  
+          
+        while(true)  
+        {  
+            System.out.println("Automated Teller Machine");  
+            System.out.println("Choose 1 for Withdraw");  
+            System.out.println("Choose 2 for Deposit");  
+            System.out.println("Choose 3 for Check Balance");  
+            System.out.println("Choose 4 for EXIT");  
+            System.out.print("Choose the operation you want to perform:");  
+              
+            //get choice from user  
+            int choice = sc.nextInt();  
+            switch(choice)  
+            {  
+                case 1:  
+        System.out.print("Enter money to be withdrawn:");  
+                      
+        //get the withdrawl money from user  
+        withdraw = sc.nextInt();  
+                      
+        //check whether the balance is greater than or equal to the withdrawal amount  
+        if(balance >= withdraw)  
+        {  
+            //remove the withdrawl amount from the total balance  
+            balance = balance - withdraw;  
+            System.out.println("Please collect your money");  
+        }  
+        else  
+        {  
+            //show custom error message   
+            System.out.println("Insufficient Balance");  
+        }  
+        System.out.println("");  
+        break;  
+   
+                case 2:  
+                      
+        System.out.print("Enter money to be deposited:");  
+                      
+        //get deposite amount from te user  
+        deposit = sc.nextInt();  
+                      
+        //add the deposit amount to the total balanace  
+        balance = balance + deposit;  
+        System.out.println("Your Money has been successfully depsited");  
+        System.out.println("");  
+        break;  
+   
+                case 3:  
+        //displaying the total balance of the user  
+        System.out.println("Balance : "+balance);  
+        System.out.println("");  
+        break;  
+   
+                case 4:  
+        //exit from the menu  
+        System.exit(0);  
+            }  
+        }  
+    }  
 }
